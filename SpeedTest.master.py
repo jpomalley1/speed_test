@@ -2,7 +2,7 @@ import tensorflow as tf
 import time
 import numpy as np
 
-def benchmark_tf_matmul(N, dtype, num_iterations=100, warmup_iterations=10):
+def benchmark_tf_matmul(N, dtype, num_iterations=600, warmup_iterations=200):
     # Ensure TensorFlow is using the GPU
     physical_devices = tf.config.list_physical_devices('GPU')
     if physical_devices:
@@ -35,6 +35,6 @@ def benchmark_tf_matmul(N, dtype, num_iterations=100, warmup_iterations=10):
     print(f"Dtype: {dtype}, Size: {N}x{N}, Avg Time: {avg_time:.5f}s, PFLOPs/s: {pflops_per_s:.5f}")
 
 if __name__ == "__main__":
-    N = 4096  # Matrix size
+    N = 10192  # Matrix size
     benchmark_tf_matmul(N, tf.float32)
     benchmark_tf_matmul(N, tf.float16)
