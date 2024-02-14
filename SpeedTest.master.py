@@ -30,11 +30,12 @@ def benchmark_tf_matmul(N, dtype, num_iterations=600, warmup_iterations=200):
     # Calculate average time and FLOPs
     avg_time = np.mean(times)
     flops = 2 * N**3 / avg_time  # 2*N^3 FLOPs for matrix multiplication
-    pflops_per_s = flops / 1e15  # Convert to PFLOPs/s
+    gflops_per_s = flops / 1e12  # Convert to GFLOPs/s
 
-    print(f"Dtype: {dtype}, Size: {N}x{N}, Avg Time: {avg_time:.5f}s, PFLOPs/s: {pflops_per_s:.5f}")
+    print(f"Dtype: {dtype}, Size: {N}x{N}, Avg Time: {avg_time:.5f}s, GPFLOPs/s: {gflops_per_s:.5f}")
 
 if __name__ == "__main__":
-    N = 10192  # Matrix size
+    N = 2048  # Matrix size
     benchmark_tf_matmul(N, tf.float32)
     benchmark_tf_matmul(N, tf.float16)
+
